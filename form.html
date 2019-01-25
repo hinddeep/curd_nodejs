@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>MyForm</title>	
+	
+	
+  </head>
+  
+  <body style="background-color:pink">
+  <br>
+  <h2><center>Enter your Details below</center></h2>
+  <br>
+  <br>
+  <div class="container">
+  
+   <form class="form-horizontal" id="frm" method="get">   
+  
+  <div class="form-group">
+   <div class="col-md-2"></div>
+    <label class="control-label col-md-2">First Name</label>	
+	<div class="col-md-5">
+    <input type="text" class="form-control" name="fname" id="first" placeholder="First Name">   
+	</div>
+  </div>
+ 
+	
+  <div class="form-group">
+  <div class="col-md-2"></div>
+    <label class="control-label col-md-2">Last Name</label>
+	<div class="col-md-5">
+    <input type="text" class="form-control" name="lname" id="last" placeholder="Last Name">
+	</div>	 
+  </div>  
+  
+  <div class="form-group">
+  <div class="col-md-2"></div>
+  <div class="col-md-4"></div>
+ <button type="submit" class="btn btn-primary" style="margin:10px">Submit</button>
+ </div>  
+ 
+	</form> 
+</div>	
+<script>
+	function getPort(){
+		var port_number = 5000;
+		document.getElementById("frm").action = "http://localhost:" + port_number;
+		}
+	getPort();	
+	</script>
+      </body>
+</html>

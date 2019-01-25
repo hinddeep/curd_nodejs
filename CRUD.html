@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>MyForm</title>
+	
+	<style>
+		th, button{
+			padding:8px
+		}
+		button {
+		margin:10px
+		}
+	</style>
+	
+	<script>
+	function del(clickedid){	
+	   var port_number = 5000;	
+	   
+	$.ajax({ type: "POST",
+			 url: "http://localhost:" + port_number, 
+			 data: '{"type":"delete", "id": "' + clickedid + '"}',
+			 crossDomain:true,			
+			 error: function(xhr, error){
+			 $("#Failure").show().delay(1000).fadeOut(400);
+			 console.log(xhr); 
+			 console.log(error);
+			 console.log("error");			 
+			 },
+			 success: function(result){
+			  $("#Success").show().delay(1000).fadeOut(400);
+			 var data = '{"id": "' + clickedid + '"}';
+			 console.log(data);
+			 var obj = JSON.parse(data);			
+			 console.log(obj.id);			
+			 $('#'+clickedid).parent().parent().parent().hide(400,"swing");
+			 console.log("hidden");			 
+		}});		
+	}	
+	
+	function update(clickedid){
+	   var port_number = 5000;		  
+	   var queryid = "F" + parseInt(clickedid);
+	   var fname = $('#'+ queryid).text();
+	   queryid = "L" + parseInt(clickedid);
+	   var lname = $('#'+ queryid).text();
+	   console.log(fname);
+	   console.log(lname);
+	   
+	$.ajax({ type: "POST",
+			 url: "http://localhost:" + port_number, 
+			 data: '{"type":"update", "id": "' + clickedid + '", "fname": "' + fname + '", "lname": "' + lname + '"}',
+			 crossDomain:true,			 
+			 error: function(xhr, error){
+			 $("#Failure").show().delay(1000).fadeOut(400);;
+			 console.log(xhr); 
+			 console.log(error);
+			 console.log("error");			 
+			 },
+			 success: function(result){
+			 $("#Success").show().delay(1000).fadeOut(400);;
+			 console.log("Updated Successfully!");
+		}});		
+	}
+	
+	function delet(clickedid)
+	{
+		del(clickedid);
+		del(clickedid);
+	}
+	
+	function up(clickedid)
+	{
+		update(clickedid);
+		update(clickedid);
+	}
+	
+	</script>
+	
+  </head>
+  
+  <body style="background-color:lightgray">
+  <br>
+  
+  <div id="Success" class="alert alert-success" style="display: none;">
+   <strong>Operation successfull!</strong>
+  </div>
+  
+  <div id="Failure" class="alert alert-danger" style="display: none;">
+   <strong>Operation failed!</strong>
+  </div>
+  
+  <h2><center>Student Details</center></h2>
+   <p style="margin:10px">Note: You can edit first and last name by clicking on the corresponding cell.</p>
+  <center style="margin:30px">
+	<table class="table-hover table-responsive-md table-bordered table-striped table-editable" id="tbl">
+		<tr>
+			<th>Index</th>
+			<th>First Name</th>
+			<th>Last Name</th>	
+			<th><center>Delete</center></th>
+			<th><center>Update</center></th>			
+		</tr>	
